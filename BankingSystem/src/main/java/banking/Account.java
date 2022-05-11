@@ -3,7 +3,7 @@ package banking;
 /**
  * Abstract bank account class.<br>
  * <br>
- *
+ * <p>
  * Private Variables:<br>
  * {@link #accountHolder}: AccountHolder<br>
  * {@link #accountNumber}: Long<br>
@@ -11,41 +11,48 @@ package banking;
  * {@link #balance}: double
  */
 public abstract class Account {
-	private AccountHolder accountHolder;
-	private Long accountNumber;
-	private int pin;
-	private double balance;
 
-	protected Account(AccountHolder accountHolder, Long accountNumber, int pin, double startingDeposit) {
-		// complete the constructor
-	}
+    private final AccountHolder accountHolder;
+    private final Long accountNumber;
+    private final int pin;
+    private double balance;
 
-	public AccountHolder getAccountHolder() {
-		// complete the function
-        return null;
-	}
+    protected Account(AccountHolder accountHolder, Long accountNumber, int pin, double startingDeposit) {
+        this.accountHolder = accountHolder;
+        this.accountNumber = accountNumber;
+        this.pin = pin;
+        this.balance = startingDeposit;
+    }
 
-	public boolean validatePin(int attemptedPin) {
-		// complete the function
-        return true;
-	}
+    public AccountHolder getAccountHolder() {
+        // complete the function
+        return accountHolder;
+    }
 
-	public double getBalance() {
-		// complete the function
-        return -1;
-	}
+    public boolean validatePin(int attemptedPin) {
+        // complete the function
+        return pin == attemptedPin;
+    }
 
-	public Long getAccountNumber() {
-		// complete the function
-        return -1L;
-	}
+    public double getBalance() {
+        // complete the function
+        return balance;
+    }
 
-	public void creditAccount(double amount) {
-		// complete the function
-	}
+    public Long getAccountNumber() {
+        // complete the function
+        return accountNumber;
+    }
 
-	public boolean debitAccount(double amount) {
-		// complete the function
-        return true;
-	}
+    public void creditAccount(double amount) {
+        balance += amount;
+    }
+
+    public boolean debitAccount(double amount) {
+        if (amount <= balance) {
+            balance -= amount;
+            return true;
+        }
+        return false;
+    }
 }
