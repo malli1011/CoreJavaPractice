@@ -2,10 +2,7 @@ package com.corejava.java8.streams;
 
 import com.corejava.java8.streams.model.Employee;
 
-import java.util.Comparator;
-import java.util.DoubleSummaryStatistics;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class EmployeeQueriesPractice {
@@ -78,5 +75,19 @@ public class EmployeeQueriesPractice {
     //Who is the oldest employee in the organization? What is his age and which department he belongs to?
     public static void getOldestEmployee(List<Employee> employees) {
         employees.stream().max(Comparator.comparingInt(Employee::getAge)).ifPresent(System.out::println);
+    }
+
+    //Highest paid employee in each department.
+    public static void getHighestPaidEmployeeByDept(List<Employee> employees) {
+        Map<String, Optional<Employee>> collect = employees
+                .stream()
+                .collect(
+                        Collectors.groupingBy(
+                                Employee::getDepartment, Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary))
+                        )
+                );
+
+        collect.forEach((key, val) -> System.out.println(key + " : " + val.orElse(null)));
+
     }
 }

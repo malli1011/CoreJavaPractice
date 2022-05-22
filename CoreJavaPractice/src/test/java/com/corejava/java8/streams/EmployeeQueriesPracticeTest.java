@@ -50,7 +50,7 @@ class EmployeeQueriesPracticeTest {
     }
 
     @Test
-    void avgAndTotalSalaryOfOrgTest(){
+    void avgAndTotalSalaryOfOrgTest() {
         EmployeeQueriesPractice.avgAndTotalSalaryOfOrg(employeeList);
     }
 
@@ -60,7 +60,12 @@ class EmployeeQueriesPracticeTest {
     }
 
     @Test
-    void getOldestEmployeeTest(){
+    void getOldestEmployeeTest() {
         EmployeeQueriesPractice.getOldestEmployee(employeeList);
+    }
+
+    @Test
+    void getHighestPaidEmployeeByDeptTest() {
+        EmployeeQueriesPractice.getHighestPaidEmployeeByDept(employeeList);
     }
 }

@@ -6,6 +6,7 @@ import com.corejava.java8.streams.model.Student;
 
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class StudentStreamExamples {
 
@@ -61,6 +62,14 @@ public class StudentStreamExamples {
         };
         students.stream()
                 .filter(mobileNumPredicate)
+                .forEach(System.out::println);
+    }
+
+    //Gel All mobile numbers from all the students.
+    public static void getAllStudentsMobileNumbers() {
+        students.stream()
+                .flatMap(student -> student.getMobileNumbers().stream())
+                .collect(Collectors.toSet())
                 .forEach(System.out::println);
     }
 }

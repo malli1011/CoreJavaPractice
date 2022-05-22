@@ -27,4 +27,9 @@ class StudentStreamExamplesTest {
     void getAllStudentsBuMobileNumTest() {
         StudentStreamExamples.getAllStudentsBuMobileNum("1233", "1234");
     }
+
+    @Test
+    void getAllStudentsMobileNumbersTest() {
+        StudentStreamExamples.getAllStudentsMobileNumbers();
+    }
 }
