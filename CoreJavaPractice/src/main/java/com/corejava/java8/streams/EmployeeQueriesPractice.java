@@ -3,6 +3,7 @@ package com.corejava.java8.streams;
 import com.corejava.java8.streams.model.Employee;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class EmployeeQueriesPractice {
@@ -88,6 +89,25 @@ public class EmployeeQueriesPractice {
                 );
 
         collect.forEach((key, val) -> System.out.println(key + " : " + val.orElse(null)));
+
+    }
+
+    public static void groupEmployeesByAgeAndPrintDescOrder(List<Employee> employees) {
+        //Approach1
+        Map<Integer, Long> map = employees
+                .stream()
+                .collect(Collectors.groupingBy(Employee::getAge, () -> new TreeMap<>(Comparator.comparingInt(Integer::intValue).reversed()), Collectors.counting()));
+        map.forEach((key, val) -> System.out.println(key + " : " + val));
+
+        //Approach2
+        Map<Integer, Long> map2 = employees
+                .stream()
+                .collect(Collectors.groupingBy(Employee::getAge, () -> new TreeMap<>(Collections.reverseOrder()), Collectors.counting()));
+
+        //Approach3
+        Map<Integer, Long> collect = employees.stream().collect(Collectors.groupingBy(Employee::getAge, Collectors.counting()));
+
+        collect.entrySet().stream().sorted((e1, e2) -> e2.getKey() - e1.getKey()).forEach(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
 
     }
 }

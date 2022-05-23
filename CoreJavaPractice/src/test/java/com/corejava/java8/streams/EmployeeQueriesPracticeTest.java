@@ -68,4 +68,9 @@ class EmployeeQueriesPracticeTest {
     void getHighestPaidEmployeeByDeptTest() {
         EmployeeQueriesPractice.getHighestPaidEmployeeByDept(employeeList);
     }
+
+    @Test
+    void groupEmployeesByAgeAndPrintDescOrderTest() {
+        EmployeeQueriesPractice.groupEmployeesByAgeAndPrintDescOrder(employeeList);
+    }
 }
